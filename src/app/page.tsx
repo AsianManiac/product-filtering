@@ -24,6 +24,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Slider } from "@/components/ui/slider";
+import { Metadata } from "next";
 
 const SORT_OPTIONS = [
   { name: "None", value: "none" },
@@ -145,7 +146,7 @@ export default function Home() {
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-          High-quality cotton selection
+          TProduct Trial Sort
         </h1>
 
         <div className="flex items-center">
@@ -398,7 +399,6 @@ export default function Home() {
             )}
           </ul>
         </div>
-        <p>{JSON.stringify(products)}</p>
       </section>
     </main>
   );
