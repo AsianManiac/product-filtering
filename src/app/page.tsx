@@ -90,7 +90,7 @@ export default function Home() {
   const { data: products, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const { data } = await axios.post<QueryResult<Product>[]>(
+      const { data } = await axios.post<QueryResult<TProduct>[]>(
         `${process.env.NEXT_PUBLIC_URL}/api/products`,
         {
           filter: {
