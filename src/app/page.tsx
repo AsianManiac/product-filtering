@@ -87,6 +87,8 @@ export default function Home() {
     sort: "none",
   });
 
+  console.log(filter);
+
   const { data: products, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -95,6 +97,9 @@ export default function Home() {
         {
           filter: {
             sort: filter.sort,
+            price: filter.price.range,
+            size: filter.size,
+            color: filter.color,
           },
         }
       );

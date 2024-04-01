@@ -36,28 +36,28 @@ const MAX_PRODUCT_PRICE = 50;
 
 export const POST = async (req: NextRequest) => {
   try {
-    // const body = await req.json();
+    const body = await req.json();
 
-    // const { color, price, size, sort } = ProductFilterValidator.parse(
-    //   body.filter
-    // );
+    const { color, price, size, sort } = ProductFilterValidator.parse(
+      body.filter
+    );
 
-    // const filter = new Filter();
+    const filter = new Filter();
 
-    // if (color.length > 0)
-    //   color.forEach((color) => filter.add("color", "=", color));
-    // else if (color.length === 0) filter.addRaw("color", `color = ""`);
+    if (color.length > 0)
+      color.forEach((color) => filter.add("color", "=", color));
+    else if (color.length === 0) filter.addRaw("color", `color = ""`);
 
-    // if (size.length > 0) size.forEach((size) => filter.add("size", "=", size));
-    // else if (size.length === 0) filter.addRaw("size", `size = ""`);
+    if (size.length > 0) size.forEach((size) => filter.add("size", "=", size));
+    else if (size.length === 0) filter.addRaw("size", `size = ""`);
 
-    // filter.addRaw("price", `price >= ${price[0]} AND price <= ${price[1]}`);
+    filter.addRaw("price", `price >= ${price[0]} AND price <= ${price[1]}`);
 
     const products = await db.query({
-      topK: 12,
+      topK: 17,
       vector: [0, 0, 0],
       includeMetadata: true,
-      // filter: filter.hasFilter() ? filter.get() : undefined,
+      filter: filter.hasFilter() ? filter.get() : undefined,
     });
 
     return new Response(JSON.stringify(products));
