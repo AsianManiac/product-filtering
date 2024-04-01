@@ -55,7 +55,15 @@ export const POST = async (req: NextRequest) => {
 
     const products = await db.query({
       topK: 17,
-      vector: [0, 0, 0],
+      vector: [
+        0,
+        0,
+        sort === "none"
+          ? AVG_PRODUCT_PRICE
+          : sort === "price-asc"
+          ? 0
+          : MAX_PRODUCT_PRICE,
+      ],
       includeMetadata: true,
       filter: filter.hasFilter() ? filter.get() : undefined,
     });
